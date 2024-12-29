@@ -1,4 +1,4 @@
-# HTML静态官网项目模版
+# HTML静态官网模版
 
 ## 技术架构
 
@@ -7,7 +7,7 @@
 HTML、JS、CSS
 
 # 代码仓库
-github.com
+https://github.com/junmaqiang/liangziji.github.io
 
 # 站点空间
 pages
@@ -19,23 +19,13 @@ pages 自带 3个月的
 ## 项目结构
 
 ```sh
-# 蜘蛛协议文件
-robots.txt
-
-# 阅读文件
-README.md
-
-# ico浏览器小图标
-favicon.ico
-
-# 站点主页
-index.html
-
-# 容器构建文件
-Dockerfile
-
-# CI/CD流水线脚本
-Jenkinsfile
+|
+|—— /images/       				: 图片目录
+|__ index.html         		    : 站点主页
+|__ README.md           		: 阅读文件
+|__ CNAME           		    : 别名记录
+|__ rebots.txt           		: 蜘蛛协议文件
+|
 ```
 
 ## github.com 操作
