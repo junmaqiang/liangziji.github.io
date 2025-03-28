@@ -1,0 +1,35 @@
+# 提交信息中包含 BREAKING CHANGE 字样时，触发主版本号 Major 递增
+# 比如：git commit -m "feat: rewrite auth module\n\nBREAKING CHANGE: remove legacy API"
+majorPattern: "(?m)^BREAKING CHANGE:.*$"
+
+# 提交信息中包含 feature 时，触发次版本号 Minor 递增
+# 比如：git commit -m "feat: add user login"
+minorPattern: "^feat(?:\(.+\))?:.*"
+
+# 提交信息中包含 fix 时，触发修订号 Patch 递增
+# 比如：git commit -m "fix: login page crash"
+patchPattern: "^fix(?:\(.+\))?:.*"
+
+# 定义不同分支的版本号递增策略
+bumpStrategies:
+    - branchesPattern: ".*" # 所有分支策略
+      strategy: "AUTO" # 自动根据提交信息决定版本号的递增方式（Major、Minor 或 Patch）
+      # 下面三个参数和预发布有关
+      preRelease: true # 1.0.0-alpha
+      #preRelease: false # 1.0.0
+      #
+      #preReleaseTemplate: "beta.{{.Commits | len}}" # 生成 1.0.0-beta.1
+      preReleaseTemplate: "alpha.{{.Commits | len}}" # 生成 1.0.0-alpha.1
+      #
+      preReleaseOverwrite: false # 1.0.0-alpha.1
+      #preReleaseOverwrite: true # 1.0.0-alpha
+      #
+      buildMetadataTemplate: # 定义构建元数据的模板
+      # 如果你想在构建元数据中包含提交者的名字，可以修改为下面
+      #buildMetadataTemplate: "{{Commits | len}}.{{(.Commits | first).Author.Name}}"
+    - branchesPattern: ".*"
+      strategy: "AUTO"
+      preRelease: false
+      preReleaseTemplate:
+      preReleaseOverwrite: false
+      buildMetadataTemplate: "{{Commits | len}}.{{(.Commits | first).Hash.Short}}"
